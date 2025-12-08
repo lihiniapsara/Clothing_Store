@@ -1,10 +1,16 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ShoppingCart } from "lucide-react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { useCart } from "@/contexts/CartContext";
+import { toast } from "sonner";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { cartCount } = useCart();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,11 +22,21 @@ const Navbar = () => {
   }, []);
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-      setIsMobileMenuOpen(false);
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+    } else {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
     }
+    setIsMobileMenuOpen(false);
   };
 
   return (
@@ -31,9 +47,10 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
-          <a href="#hero" className="text-2xl font-bold tracking-tight">
-            Alex Rivera
-          </a>
+          <button onClick={() => navigate('/')} className="text-2xl font-bold tracking-tight flex items-center gap-2 hover:opacity-80 transition-smooth">
+            <span className="text-primary">LIHINI'S</span>
+            <span>Fashion</span>
+          </button>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
@@ -47,7 +64,7 @@ const Navbar = () => {
               onClick={() => scrollToSection("gallery")}
               className="text-foreground/80 hover:text-foreground transition-smooth"
             >
-              Gallery
+              Shop
             </button>
             <button
               onClick={() => scrollToSection("contact")}
@@ -55,8 +72,19 @@ const Navbar = () => {
             >
               Contact
             </button>
+            <button
+              onClick={() => toast.info("Cart feature coming soon! Order via WhatsApp for now.")}
+              className="relative text-foreground/80 hover:text-foreground transition-smooth"
+            >
+              <ShoppingCart size={22} />
+              {cartCount > 0 && (
+                <span className="absolute -top-2 -right-2 w-5 h-5 bg-primary text-foreground rounded-full text-xs flex items-center justify-center font-bold shadow-lg">
+                  {cartCount}
+                </span>
+              )}
+            </button>
             <Button variant="hero" onClick={() => scrollToSection("contact")}>
-              Get in Touch
+              Order via WhatsApp
             </Button>
           </div>
 
@@ -84,7 +112,7 @@ const Navbar = () => {
                 onClick={() => scrollToSection("gallery")}
                 className="text-foreground/80 hover:text-foreground transition-smooth text-left py-2"
               >
-                Gallery
+                Shop
               </button>
               <button
                 onClick={() => scrollToSection("contact")}
@@ -93,7 +121,7 @@ const Navbar = () => {
                 Contact
               </button>
               <Button variant="hero" className="w-full" onClick={() => scrollToSection("contact")}>
-                Get in Touch
+                Order via WhatsApp
               </Button>
             </div>
           </div>

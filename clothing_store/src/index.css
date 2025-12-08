@@ -8,72 +8,76 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 98%;
-    --foreground: 0 0% 10%;
+    --background: 48 15% 97%;
+    --foreground: 30 20% 10%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 10%;
+    --card: 48 30% 99%;
+    --card-foreground: 30 20% 10%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 10%;
+    --popover: 48 30% 99%;
+    --popover-foreground: 30 20% 10%;
 
-    --primary: 0 0% 10%;
-    --primary-foreground: 0 0% 98%;
+    --primary: 45 96% 50%;
+    --primary-foreground: 30 20% 10%;
 
-    --secondary: 0 0% 95%;
-    --secondary-foreground: 0 0% 10%;
+    --secondary: 42 88% 92%;
+    --secondary-foreground: 30 20% 10%;
 
-    --muted: 0 0% 92%;
-    --muted-foreground: 0 0% 45%;
+    --muted: 45 20% 94%;
+    --muted-foreground: 30 15% 40%;
 
-    --accent: 38 92% 50%;
-    --accent-foreground: 0 0% 10%;
+    --accent: 38 98% 55%;
+    --accent-foreground: 30 20% 10%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
-    --ring: 38 92% 50%;
+    --border: 45 25% 88%;
+    --input: 45 25% 90%;
+    --ring: 45 96% 50%;
 
-    --radius: 0.5rem;
+    --radius: 1rem;
 
-    /* Custom design tokens */
-    --gradient-hero: linear-gradient(135deg, hsl(0 0% 10%) 0%, hsl(0 0% 25%) 100%);
-    --gradient-accent: linear-gradient(135deg, hsl(38 92% 50%) 0%, hsl(45 93% 47%) 100%);
-    --shadow-elegant: 0 10px 40px -10px hsl(0 0% 0% / 0.2);
-    --shadow-hover: 0 20px 60px -15px hsl(0 0% 0% / 0.3);
+    /* Custom design tokens - Vibrant Yellow Theme */
+    --gradient-hero: linear-gradient(135deg, hsl(45 96% 50%) 0%, hsl(38 98% 55%) 50%, hsl(32 95% 60%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(50 100% 60%) 0%, hsl(45 98% 55%) 100%);
+    --gradient-tropical: linear-gradient(135deg, hsl(42 88% 65%) 0%, hsl(48 85% 70%) 100%);
+    --gradient-dark: linear-gradient(135deg, hsl(30 30% 15%) 0%, hsl(30 25% 20%) 100%);
+    --shadow-elegant: 0 10px 40px -10px hsl(45 96% 50% / 0.35);
+    --shadow-hover: 0 20px 60px -15px hsl(45 96% 50% / 0.45);
+    --shadow-glow: 0 0 30px hsl(45 96% 50% / 0.4);
     --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
 
   .dark {
-    --background: 0 0% 10%;
-    --foreground: 0 0% 98%;
+    --background: 30 25% 8%;
+    --foreground: 48 30% 98%;
 
-    --card: 0 0% 12%;
-    --card-foreground: 0 0% 98%;
+    --card: 30 25% 12%;
+    --card-foreground: 48 30% 98%;
 
-    --popover: 0 0% 12%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 30 25% 12%;
+    --popover-foreground: 48 30% 98%;
 
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 10%;
+    --primary: 45 96% 55%;
+    --primary-foreground: 30 20% 10%;
 
-    --secondary: 0 0% 15%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 30 20% 16%;
+    --secondary-foreground: 48 30% 98%;
 
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 60%;
+    --muted: 30 20% 16%;
+    --muted-foreground: 45 15% 65%;
 
-    --accent: 38 92% 50%;
-    --accent-foreground: 0 0% 10%;
+    --accent: 38 98% 60%;
+    --accent-foreground: 30 20% 10%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 38 92% 50%;
+    --border: 30 20% 22%;
+    --input: 30 20% 22%;
+    --ring: 45 96% 55%;
   }
 }
 
@@ -101,16 +105,20 @@ All colors MUST be HSL.
     background: var(--gradient-accent);
   }
 
-  .shadow-elegant {
-    box-shadow: var(--shadow-elegant);
+  .gradient-tropical {
+    background: var(--gradient-tropical);
   }
 
-  .shadow-hover {
-    box-shadow: var(--shadow-hover);
+  .gradient-dark {
+    background: var(--gradient-dark);
   }
 
-  .transition-smooth {
-    transition: var(--transition-smooth);
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .transition-bounce {
+    transition: var(--transition-bounce);
   }
 
   .animate-fade-in {
@@ -119,6 +127,30 @@ All colors MUST be HSL.
 
   .animate-slide-up {
     animation: slide-up 0.8s ease-out forwards;
+  }
+
+  .animate-zoom-in {
+    animation: zoom-in 1.2s ease-out forwards;
+  }
+
+  .animate-slide-right {
+    animation: slide-right 1s ease-out forwards;
+  }
+
+  .animate-slide-left {
+    animation: slide-left 1s ease-out forwards;
+  }
+
+  .animate-bounce-in {
+    animation: bounce-in 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  }
+
+  .animate-glow-pulse {
+    animation: glow-pulse 2s ease-in-out infinite;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
   }
 
   @keyframes fade-in {
@@ -140,6 +172,74 @@ All colors MUST be HSL.
     to {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+
+  @keyframes zoom-in {
+    from {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes slide-right {
+    from {
+      opacity: 0;
+      transform: translateX(-60px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slide-left {
+    from {
+      opacity: 0;
+      transform: translateX(60px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes bounce-in {
+    0% {
+      opacity: 0;
+      transform: scale(0.3);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+    70% {
+      transform: scale(0.9);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes glow-pulse {
+    0%, 100% {
+      box-shadow: 0 0 20px hsl(45 96% 50% / 0.4), 0 0 40px hsl(45 96% 50% / 0.2);
+    }
+    50% {
+      box-shadow: 0 0 30px hsl(45 96% 50% / 0.6), 0 0 60px hsl(45 96% 50% / 0.3);
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
     }
   }
 }
